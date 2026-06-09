@@ -17,12 +17,6 @@
             --radius: 12px;
             --radius-sm: 8px;
             --transition: 0.2s ease;
-            --vago: #d1d5db;
-            --minimo: #48bb78;
-            --intermediario: #4299e1;
-            --alta-dep: #ed8936;
-            --semi-int: #f56565;
-            --intensivo: #9f7aea;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -52,6 +46,7 @@
         .btn-danger { background:#fff; color:#e53e3e; border:2px solid #feb2b2; }
         .btn-danger:hover { background:#fff5f5; border-color:#e53e3e; }
         .btn-sm { padding:6px 12px; font-size:0.78rem; border-radius:6px; }
+        .btn-xs { padding:3px 8px; font-size:0.7rem; border-radius:5px; font-weight:500; }
         .main-container { max-width:1400px; margin:0 auto; padding:20px 24px; display:grid; grid-template-columns:1fr 380px; gap:20px; }
         @media (max-width:1100px) { .main-container { grid-template-columns:1fr; } }
         .card {
@@ -63,52 +58,26 @@
             display:flex; align-items:center; gap:8px; border-bottom:2px solid #edf2f7; padding-bottom:10px;
         }
         .card-header .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
-
-        /* Grade da unidade com grid equidistante */
         .unidade-grid { display:flex; flex-direction:column; gap:14px; }
-        .especiais-row {
-            display:flex; align-items:center; gap:10px; margin-bottom:4px;
-        }
+        .especiais-row { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
         .especiais-row .quarto-label { min-width:70px; font-weight:700; font-size:0.85rem; color:#4a5568; text-align:right; }
         .leitos-especiais-group { display:flex; gap:8px; }
         .quartos-grid {
             display:grid;
             grid-template-columns: repeat(5, 1fr);
             gap:12px;
-            align-items:start;
         }
-        @media (max-width:900px) {
-            .quartos-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width:600px) {
-            .quartos-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        @media (max-width:900px) { .quartos-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width:600px) { .quartos-grid { grid-template-columns: repeat(2, 1fr); } }
         .quarto-card {
-            background:#f8fafc;
-            border-radius:var(--radius-sm);
-            padding:8px;
-            border:1px solid var(--border);
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            gap:6px;
+            background:#f8fafc; border-radius:var(--radius-sm); padding:8px;
+            border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; gap:6px;
         }
         .quarto-card .quarto-label {
-            font-weight:700;
-            font-size:0.8rem;
-            color:#4a5568;
-            text-align:center;
-            width:100%;
-            background:#e2e8f0;
-            border-radius:4px;
-            padding:2px 0;
+            font-weight:700; font-size:0.8rem; color:#4a5568; text-align:center;
+            background:#e2e8f0; border-radius:4px; padding:2px 0; width:100%;
         }
-        .leitos-quarto {
-            display:flex;
-            gap:6px;
-            justify-content:center;
-            flex-wrap:wrap;
-        }
+        .leitos-quarto { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
         .leito {
             width:50px; height:48px; border-radius:var(--radius-sm); cursor:pointer;
             display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -129,13 +98,11 @@
         .fugulin-alta-dep { background:#fefcbf; color:#744210; }
         .fugulin-semi-int { background:#fed7d7; color:#742a2a; }
         .fugulin-intensivo { background:#e9d8fd; color:#44337a; }
-
         .sidebar { display:flex; flex-direction:column; gap:16px; }
         .tec-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
         .tec-list li {
             display:flex; align-items:center; gap:8px; padding:8px 10px;
             border-radius:var(--radius-sm); background:#f7fafc; font-size:0.85rem; font-weight:500;
-            transition:all var(--transition);
         }
         .tec-list li .tec-color { width:16px; height:16px; border-radius:50%; flex-shrink:0; }
         .tec-list li .carga-bar { flex:1; height:8px; background:#e2e8f0; border-radius:4px; overflow:hidden; margin-left:auto; max-width:80px; }
@@ -152,7 +119,7 @@
         .config-row select, .config-row input { padding:7px 10px; border-radius:6px; border:1.5px solid #cbd5e0; font-size:0.85rem; font-family:inherit; background:#fff; }
         .historico-item {
             padding:8px 10px; border-radius:6px; background:#f7fafc; margin-bottom:6px;
-            font-size:0.8rem; cursor:pointer; transition:all var(--transition); border-left:3px solid transparent;
+            font-size:0.8rem; cursor:pointer; border-left:3px solid transparent;
         }
         .historico-item:hover { background:#edf2f7; border-left-color:#4299e1; }
         .historico-item .data { font-weight:700; color:var(--header); }
@@ -170,16 +137,22 @@
         .toast.warning { background:#ed8936; }
         .empty-state { text-align:center; color:#a0aec0; padding:24px; font-size:0.9rem; }
         .badge-peso { font-size:0.65rem; background:#1a365d; color:#fff; padding:2px 7px; border-radius:10px; font-weight:600; letter-spacing:0.3px; }
+        .btn-mover {
+            background:none; border:none; cursor:pointer; font-size:0.7rem;
+            margin-left:4px; padding:0 3px; color:#718096; transition:0.15s;
+        }
+        .btn-mover:hover { color:#e53e3e; transform:scale(1.2); }
 
-        /* Área de impressão (oculta na tela) */
+        /* Área de impressão em paisagem */
         #print-area {
             display:none;
             background:white;
-            padding:20px;
+            padding:10mm;
             font-family:'Segoe UI', 'Inter', Arial, sans-serif;
             color:#000;
         }
         @media print {
+            @page { size: landscape; margin: 8mm; }
             body * { visibility:hidden; }
             #print-area, #print-area * { visibility:visible; }
             #print-area {
@@ -188,31 +161,16 @@
                 top:0;
                 width:100%;
                 display:block;
-                padding:20px;
                 background:white;
             }
-            .no-print { display:none !important; }
-            .print-only { display:block !important; }
-            .report-header { text-align:center; margin-bottom:20px; }
-            .report-header h2 { font-size:1.5rem; color:#1a365d; }
-            .report-section { margin-bottom:20px; }
-            .report-section h3 { font-size:1.2rem; margin-bottom:10px; border-bottom:1px solid #ccc; }
-            .report-table { width:100%; border-collapse:collapse; margin-bottom:15px; }
-            .report-table th, .report-table td { border:1px solid #999; padding:6px 8px; font-size:0.85rem; text-align:left; }
+            .report-header { text-align:center; margin-bottom:10px; }
+            .report-header h2 { font-size:1.2rem; color:#1a365d; }
+            .report-section { margin-bottom:8px; }
+            .report-section h3 { font-size:1rem; margin-bottom:4px; border-bottom:1px solid #ccc; }
+            .report-table { width:100%; border-collapse:collapse; margin-bottom:8px; font-size:0.7rem; }
+            .report-table th, .report-table td { border:1px solid #999; padding:3px 4px; }
             .report-table th { background:#f0f4f8; }
-            .report-badge { display:inline-block; padding:2px 6px; border-radius:4px; font-weight:600; }
-        }
-
-        @media (max-width:768px) {
-            .header h1 { font-size:1rem; }
-            .btn { padding:8px 12px; font-size:0.78rem; }
-            .leito { width:42px; height:40px; font-size:0.6rem; }
-            .leito-especial { width:52px; height:44px; font-size:0.58rem; }
-            .quarto-label { font-size:0.7rem; }
-            .main-container { padding:10px; gap:12px; }
-            .card { padding:14px; }
-            .nome-tec-input { min-width:70px; font-size:0.7rem; }
-            .quartos-grid { grid-template-columns: repeat(3, 1fr); }
+            .compact p { margin:2px 0; font-size:0.75rem; }
         }
     </style>
 </head>
@@ -220,7 +178,7 @@
     <header class="header">
         <h1><span class="icon">🏥</span> Atribuição de Técnicos de Enfermagem</h1>
         <div class="header-actions">
-            <button class="btn btn-outline btn-sm" onclick="resetarClassificacoes()" title="Limpar todas as classificações">🔄 Resetar</button>
+            <button class="btn btn-outline btn-sm" onclick="resetarClassificacoes()">🔄 Resetar</button>
             <button class="btn btn-primary" onclick="executarDistribuicao()">📊 Distribuir Plantão</button>
             <button class="btn btn-success" onclick="confirmarPlantao()">✅ Confirmar Plantão</button>
             <button class="btn btn-info" onclick="gerarRelatorio()">🖨️ Relatório</button>
@@ -228,7 +186,6 @@
     </header>
 
     <div class="main-container">
-        <!-- Coluna principal: Grid da Unidade -->
         <div class="card" id="grid-card">
             <div class="card-header">
                 <span class="dot" style="background:#1a365d;"></span> Planta da Unidade — 32 Leitos
@@ -246,19 +203,14 @@
             </div>
         </div>
 
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="card">
                 <div class="card-header">⚙️ Equipe do Plantão</div>
                 <div class="config-row">
                     <label for="num-tecnicos">Nº de Técnicos:</label>
                     <select id="num-tecnicos" onchange="atualizarNumTecnicos()">
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5" selected>5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
+                        <option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
                     </select>
                 </div>
                 <div id="tec-info" style="margin-top:8px;"></div>
@@ -271,37 +223,21 @@
             </div>
             <div class="card">
                 <div class="card-header">📜 Histórico de Plantões</div>
-                <div id="historico-content">
-                    <div class="empty-state">Nenhum plantão registrado ainda.</div>
-                </div>
+                <div id="historico-content"><div class="empty-state">Nenhum plantão registrado ainda.</div></div>
                 <button class="btn btn-danger btn-sm" style="margin-top:8px;width:100%;" onclick="limparHistorico()">🗑️ Limpar Histórico</button>
             </div>
         </div>
     </div>
 
-    <!-- Área oculta para impressão do relatório -->
     <div id="print-area">
-        <div class="report-header">
-            <h2>Relatório de Atribuição - Unidade de Enfermagem</h2>
-            <p id="report-datetime" style="font-size:0.9rem;"></p>
-        </div>
-        <div class="report-section">
-            <h3>Configuração do Plantão</h3>
-            <p id="report-config"></p>
-        </div>
-        <div class="report-section">
-            <h3>Distribuição por Técnico</h3>
-            <div id="report-distribuicao"></div>
-        </div>
-        <div class="report-section">
-            <h3>Mapa de Leitos e Classificações</h3>
+        <div class="report-header"><h2>Relatório de Atribuição - Unidade de Enfermagem</h2><p id="report-datetime"></p></div>
+        <div class="report-section"><h3>Configuração do Plantão</h3><p id="report-config" class="compact"></p></div>
+        <div class="report-section"><h3>Distribuição por Técnico</h3><div id="report-distribuicao" class="compact"></div></div>
+        <div class="report-section"><h3>Mapa de Leitos</h3>
             <table class="report-table" id="report-leitos">
-                <thead><tr><th>Leito</th><th>Classificação (Fugulin)</th><th>Peso</th><th>Técnico Responsável</th></tr></thead>
+                <thead><tr><th>Leito</th><th>Classificação</th><th>Peso</th><th>Responsável</th></tr></thead>
                 <tbody></tbody>
             </table>
-        </div>
-        <div class="report-section no-print" style="margin-top:20px; font-size:0.8rem; color:#666;">
-            Documento gerado automaticamente pelo Sistema de Atribuição de Técnicos de Enfermagem.
         </div>
     </div>
 
@@ -309,108 +245,53 @@
 
     <script>
         (function() {
-            const PESOS_FUGULIN = {
-                'vago': 0, 'minimo': 1, 'intermediario': 2, 'alta-dep': 3, 'semi-int': 4, 'intensivo': 5
-            };
-            const CORES_FUGULIN = {
-                'vago': '#e8eaed', 'minimo': '#c6f6d5', 'intermediario': '#bee3f8', 'alta-dep': '#fefcbf', 'semi-int': '#fed7d7', 'intensivo': '#e9d8fd'
-            };
+            const PESOS_FUGULIN = { 'vago':0, 'minimo':1, 'intermediario':2, 'alta-dep':3, 'semi-int':4, 'intensivo':5 };
+            const CORES_FUGULIN = { 'vago':'#e8eaed', 'minimo':'#c6f6d5', 'intermediario':'#bee3f8', 'alta-dep':'#fefcbf', 'semi-int':'#fed7d7', 'intensivo':'#e9d8fd' };
             const CORES_TECNICOS = ['#e53e3e','#3182ce','#d69e2e','#38a169','#805ad5','#e53e3e','#2b6cb0','#b7791f'];
 
-            const LEITOS_ESPECIAIS = [
-                { id:'Sala_Proc', nome:'Sala Proc.', quarto:'SP', tipo:'especial' },
-                { id:'TISO_A', nome:'TISO A', quarto:'TISO', tipo:'isolamento' }
-            ];
+            const LEITOS_ESPECIAIS = [ { id:'Sala_Proc', nome:'Sala Proc.', quarto:'SP', tipo:'especial' }, { id:'TISO_A', nome:'TISO A', quarto:'TISO', tipo:'isolamento' } ];
             const QUARTOS = [];
-            for (let i=1; i<=10; i++) {
-                const num = i.toString().padStart(2,'0');
-                QUARTOS.push({ nome:`T${num}`, leitos:[`T${num}A`,`T${num}B`,`T${num}C`] });
-            }
+            for (let i=1; i<=10; i++) QUARTOS.push({ nome:`T${i.toString().padStart(2,'0')}`, leitos:[`T${i.toString().padStart(2,'0')}A`,`T${i.toString().padStart(2,'0')}B`,`T${i.toString().padStart(2,'0')}C`] });
             const TODOS_LEITOS = [];
-            LEITOS_ESPECIAIS.forEach(l => TODOS_LEITOS.push({ id:l.id, nome:l.nome, quarto:l.quarto, tipo:l.tipo }));
-            QUARTOS.forEach(q => {
-                q.leitos.forEach(leitoId => TODOS_LEITOS.push({ id:leitoId, nome:leitoId, quarto:q.nome, tipo:'normal' }));
-            });
+            LEITOS_ESPECIAIS.forEach(l => TODOS_LEITOS.push({...l}));
+            QUARTOS.forEach(q => q.leitos.forEach(id => TODOS_LEITOS.push({ id, nome:id, quarto:q.nome, tipo:'normal' })));
 
             let state = {
-                numTecnicos: 5,
-                nomesTecnicos: [],
-                classificacoes: {},
-                distribuicaoAtual: {},
-                historico: [],
-                leitoSelecionado: null
+                numTecnicos:5, nomesTecnicos:[], classificacoes:{}, distribuicaoAtual:{}, historico:[], leitoSelecionado:null
             };
 
-            function gerarNomePadrao(indice) { return `Técnico ${indice+1}`; }
+            function gerarNomePadrao(i) { return `Técnico ${i+1}`; }
             function sincronizarNomes() {
-                while (state.nomesTecnicos.length < state.numTecnicos)
-                    state.nomesTecnicos.push(gerarNomePadrao(state.nomesTecnicos.length));
-                if (state.nomesTecnicos.length > state.numTecnicos)
-                    state.nomesTecnicos = state.nomesTecnicos.slice(0, state.numTecnicos);
+                while (state.nomesTecnicos.length < state.numTecnicos) state.nomesTecnicos.push(gerarNomePadrao(state.nomesTecnicos.length));
+                if (state.nomesTecnicos.length > state.numTecnicos) state.nomesTecnicos = state.nomesTecnicos.slice(0, state.numTecnicos);
             }
-
             function salvarState() {
                 sincronizarNomes();
-                try {
-                    localStorage.setItem('enfermagem_fugulin_state', JSON.stringify({
-                        numTecnicos: state.numTecnicos,
-                        nomesTecnicos: state.nomesTecnicos,
-                        classificacoes: state.classificacoes,
-                        historico: state.historico
-                    }));
-                } catch(e) {}
+                try { localStorage.setItem('enfermagem_fugulin_state', JSON.stringify({ numTecnicos:state.numTecnicos, nomesTecnicos:state.nomesTecnicos, classificacoes:state.classificacoes, historico:state.historico })); } catch(e){}
             }
             function carregarState() {
                 try {
                     const raw = localStorage.getItem('enfermagem_fugulin_state');
-                    if (raw) {
-                        const data = JSON.parse(raw);
-                        state.numTecnicos = data.numTecnicos || 5;
-                        state.nomesTecnicos = data.nomesTecnicos || [];
-                        state.classificacoes = data.classificacoes || {};
-                        state.historico = data.historico || [];
-                    }
-                } catch(e) {}
+                    if (raw) { const d = JSON.parse(raw); state.numTecnicos = d.numTecnicos||5; state.nomesTecnicos = d.nomesTecnicos||[]; state.classificacoes = d.classificacoes||{}; state.historico = d.historico||[]; }
+                } catch(e){}
                 sincronizarNomes();
-                TODOS_LEITOS.forEach(l => {
-                    if (!(l.id in state.classificacoes)) state.classificacoes[l.id] = 'vago';
-                });
+                TODOS_LEITOS.forEach(l => { if(!(l.id in state.classificacoes)) state.classificacoes[l.id] = 'vago'; });
             }
-
             function showToast(msg, tipo='') {
-                const toast = document.getElementById('toast');
-                toast.textContent = msg;
-                toast.className = 'toast '+tipo+' show';
-                clearTimeout(toast._timeout);
-                toast._timeout = setTimeout(() => toast.classList.remove('show'), 2500);
+                const t = document.getElementById('toast'); t.textContent=msg; t.className='toast '+tipo+' show';
+                clearTimeout(t._timeout); t._timeout = setTimeout(()=>t.classList.remove('show'), 2500);
             }
+            function classifToLabel(c) { return {'vago':'Vago','minimo':'Mínimo','intermediario':'Intermediário','alta-dep':'Alta Dep.','semi-int':'Semi-Int.','intensivo':'Intensivo'}[c]||c; }
+            function escapeHtml(s) { return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]); }
 
-            function classifToLabel(c) {
-                return { 'vago':'Vago', 'minimo':'Mínimo', 'intermediario':'Intermediário', 'alta-dep':'Alta Dep.', 'semi-int':'Semi-Int.', 'intensivo':'Intensivo' }[c] || c;
-            }
-
-            function escapeHtml(text) {
-                return String(text).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
-            }
-
-            // Renderização da unidade com grade equidistante
             function renderUnidade() {
                 const container = document.getElementById('unidade-grid');
-                let html = '';
-                // Leitos especiais
-                html += '<div class="especiais-row"><span class="quarto-label">Especiais</span><div class="leitos-especiais-group">';
+                let html = '<div class="especiais-row"><span class="quarto-label">Especiais</span><div class="leitos-especiais-group">';
                 LEITOS_ESPECIAIS.forEach(l => html += renderLeito(l));
-                html += '</div></div>';
-                // Grade de quartos
-                html += '<div class="quartos-grid">';
+                html += '</div></div><div class="quartos-grid">';
                 QUARTOS.forEach(q => {
-                    html += '<div class="quarto-card">';
-                    html += `<div class="quarto-label">${q.nome}</div>`;
-                    html += '<div class="leitos-quarto">';
-                    q.leitos.forEach(leitoId => {
-                        const leito = TODOS_LEITOS.find(l => l.id === leitoId);
-                        html += renderLeito(leito);
-                    });
+                    html += `<div class="quarto-card"><div class="quarto-label">${q.nome}</div><div class="leitos-quarto">`;
+                    q.leitos.forEach(id => html += renderLeito(TODOS_LEITOS.find(l=>l.id===id)));
                     html += '</div></div>';
                 });
                 html += '</div>';
@@ -420,37 +301,29 @@
                     if (el) el.classList.add('selected');
                 }
             }
-
             function renderLeito(leito) {
-                const classif = state.classificacoes[leito.id] || 'vago';
-                const cssClass = 'fugulin-' + classif;
-                const isEspecial = leito.tipo !== 'normal';
-                const extraClass = isEspecial ? ' leito-especial' : '';
-                const isSelected = state.leitoSelecionado === leito.id ? ' selected' : '';
-                let tecBadge = '', tecTitle = '';
-                if (state.distribuicaoAtual[leito.id] !== undefined && classif !== 'vago') {
+                const classif = state.classificacoes[leito.id]||'vago';
+                const cssClass = 'fugulin-'+classif;
+                const extraClass = leito.tipo!=='normal' ? ' leito-especial' : '';
+                const selClass = state.leitoSelecionado===leito.id ? ' selected' : '';
+                let badge='', tecTitle='';
+                if (state.distribuicaoAtual[leito.id]!==undefined && classif!=='vago') {
                     const tecIdx = state.distribuicaoAtual[leito.id];
-                    const nome = state.nomesTecnicos[tecIdx] || gerarNomePadrao(tecIdx);
-                    tecBadge = `<span class="tec-badge" style="background:${CORES_TECNICOS[tecIdx]};" title="${nome}">${tecIdx+1}</span>`;
+                    const nome = state.nomesTecnicos[tecIdx]||gerarNomePadrao(tecIdx);
+                    badge = `<span class="tec-badge" style="background:${CORES_TECNICOS[tecIdx]};" title="${nome}">${tecIdx+1}</span>`;
                     tecTitle = ` | ${nome}`;
                 }
-                const title = `${leito.nome} — ${classifToLabel(classif)}${tecTitle}`;
-                return `<div class="leito ${cssClass}${extraClass}${isSelected}" data-leito-id="${leito.id}" title="${title}" onclick="selecionarLeito('${leito.id}')">${leito.nome}${tecBadge}</div>`;
+                return `<div class="leito ${cssClass}${extraClass}${selClass}" data-leito-id="${leito.id}" title="${leito.nome} — ${classifToLabel(classif)}${tecTitle}" onclick="selecionarLeito('${leito.id}')">${leito.nome}${badge}</div>`;
             }
 
-            function calcularCargaTecnico(tecIdx) {
-                let carga = 0;
-                Object.keys(state.distribuicaoAtual).forEach(leitoId => {
-                    if (state.distribuicaoAtual[leitoId] === tecIdx)
-                        carga += PESOS_FUGULIN[state.classificacoes[leitoId]||'vago'];
-                });
+            function calcularCargaTecnico(idx) {
+                let carga=0;
+                for (const [id, tec] of Object.entries(state.distribuicaoAtual)) if (tec===idx) carga += PESOS_FUGULIN[state.classificacoes[id]||'vago'];
                 return carga;
             }
-
             function calcularCargaMaximaPossivel() {
-                let total = 0;
-                TODOS_LEITOS.forEach(l => total += PESOS_FUGULIN[state.classificacoes[l.id]||'vago']);
-                return total / state.numTecnicos;
+                let total=0; TODOS_LEITOS.forEach(l=> total+=PESOS_FUGULIN[state.classificacoes[l.id]||'vago']);
+                return total/state.numTecnicos;
             }
 
             function renderTecnicos() {
@@ -459,17 +332,13 @@
                 let html = '<ul class="tec-list">';
                 for (let i=0; i<state.numTecnicos; i++) {
                     const carga = calcularCargaTecnico(i);
-                    const maxCarga = Math.max(1, calcularCargaMaximaPossivel());
-                    const pct = maxCarga>0 ? Math.min(100, (carga/maxCarga)*100) : 0;
-                    const nome = state.nomesTecnicos[i] || gerarNomePadrao(i);
-                    html += `
-                    <li>
-                        <span class="tec-color" style="background:${CORES_TECNICOS[i]};"></span>
-                        <input class="nome-tec-input" type="text" value="${escapeHtml(nome)}" 
-                               oninput="atualizarNomeTecnico(${i}, this.value)" placeholder="Nome do profissional">
+                    const maxC = Math.max(1, calcularCargaMaximaPossivel());
+                    const pct = Math.min(100, (carga/maxC)*100);
+                    const nome = state.nomesTecnicos[i]||gerarNomePadrao(i);
+                    html += `<li><span class="tec-color" style="background:${CORES_TECNICOS[i]};"></span>
+                        <input class="nome-tec-input" value="${escapeHtml(nome)}" oninput="atualizarNomeTecnico(${i},this.value)" placeholder="Nome">
                         <div class="carga-bar"><div class="carga-fill" style="width:${pct}%;background:${CORES_TECNICOS[i]};"></div></div>
-                        <span class="carga-num">${carga.toFixed(1)}</span>
-                    </li>`;
+                        <span class="carga-num">${carga.toFixed(1)}</span></li>`;
                 }
                 html += '</ul>';
                 container.innerHTML = html;
@@ -477,134 +346,106 @@
 
             function renderResultado() {
                 const container = document.getElementById('resultado-content');
-                const distKeys = Object.keys(state.distribuicaoAtual);
-                if (distKeys.length === 0) {
-                    container.innerHTML = '<div class="empty-state">Clique em <strong>"Distribuir Plantão"</strong> para ver o resultado.</div>';
-                    return;
+                if (Object.keys(state.distribuicaoAtual).length===0) {
+                    container.innerHTML = '<div class="empty-state">Clique em <strong>"Distribuir Plantão"</strong> para ver o resultado.</div>'; return;
                 }
                 const grupos = {};
-                for (let i=0; i<state.numTecnicos; i++) grupos[i] = { leitos:[], cargaTotal:0, quartos:new Set() };
-                distKeys.forEach(leitoId => {
-                    const tecIdx = state.distribuicaoAtual[leitoId];
+                for (let i=0;i<state.numTecnicos;i++) grupos[i] = {leitos:[], cargaTotal:0, quartos:new Set(), altaCount:0};
+                for (const [leitoId, tecIdx] of Object.entries(state.distribuicaoAtual)) {
                     const classif = state.classificacoes[leitoId]||'vago';
+                    if (classif==='vago') continue;
                     const peso = PESOS_FUGULIN[classif];
                     const leito = TODOS_LEITOS.find(l=>l.id===leitoId);
-                    if (grupos[tecIdx]) {
-                        grupos[tecIdx].leitos.push({ id:leitoId, nome:leito?leito.nome:leitoId, classif, peso });
-                        grupos[tecIdx].cargaTotal += peso;
-                        if (leito) grupos[tecIdx].quartos.add(leito.quarto);
-                    }
-                });
+                    grupos[tecIdx].leitos.push({id:leitoId, nome:leito?.nome||leitoId, classif, peso});
+                    grupos[tecIdx].cargaTotal += peso;
+                    if (leito) grupos[tecIdx].quartos.add(leito.quarto);
+                    if (peso>=3) grupos[tecIdx].altaCount++;
+                }
                 let html = '';
                 for (let i=0; i<state.numTecnicos; i++) {
                     const g = grupos[i];
-                    const nome = state.nomesTecnicos[i] || gerarNomePadrao(i);
-                    if (g.leitos.length === 0) {
-                        html += `<div style="padding:8px;margin-bottom:6px;background:#f7fafc;border-radius:6px;border-left:3px solid ${CORES_TECNICOS[i]};font-size:0.82rem;"><strong style="color:${CORES_TECNICOS[i]};">${nome}:</strong> <span style="color:#a0aec0;">sem pacientes</span></div>`;
+                    const nome = state.nomesTecnicos[i]||gerarNomePadrao(i);
+                    if (g.leitos.length===0) {
+                        html += `<div style="padding:8px;margin-bottom:6px;background:#f7fafc;border-radius:6px;border-left:3px solid ${CORES_TECNICOS[i]};"><strong style="color:${CORES_TECNICOS[i]};">${nome}:</strong> sem pacientes</div>`;
                         continue;
                     }
-                    const quartosStr = [...g.quartos].sort().join(', ');
-                    const leitosStr = g.leitos.map(l =>
-                        `<span style="display:inline-block;background:${CORES_FUGULIN[l.classif]};padding:2px 6px;border-radius:4px;margin:2px;font-size:0.7rem;">${l.nome} <span class="badge-peso">${l.peso}</span></span>`
-                    ).join(' ');
+                    const leitosHtml = g.leitos.map(l => `
+                        <span style="display:inline-flex;align-items:center;background:${CORES_FUGULIN[l.classif]};padding:2px 6px;border-radius:4px;margin:2px;font-size:0.7rem;">
+                            ${l.nome} <span class="badge-peso">${l.peso}</span>
+                            <button class="btn-mover" title="Mover paciente" onclick="event.stopPropagation(); moverPaciente('${l.id}')">↔</button>
+                        </span>`).join(' ');
                     html += `
                     <div style="padding:8px 10px;margin-bottom:8px;background:#fff;border-radius:8px;border-left:4px solid ${CORES_TECNICOS[i]};box-shadow:0 1px 4px rgba(0,0,0,0.06);">
-                        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;">
-                            <strong style="color:${CORES_TECNICOS[i]};font-size:0.9rem;">${nome}</strong>
-                            <span style="font-weight:700;font-size:0.85rem;">Carga: ${g.cargaTotal.toFixed(1)}</span>
+                        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+                            <strong style="color:${CORES_TECNICOS[i]};">${nome}</strong>
+                            <span>Carga: ${g.cargaTotal.toFixed(1)} | Alta complex.: ${g.altaCount}</span>
                         </div>
-                        <div style="font-size:0.7rem;color:#718096;margin:4px 0;">📍 Quartos: ${quartosStr}</div>
-                        <div style="margin-top:4px;">${leitosStr}</div>
+                        <div style="font-size:0.7rem;color:#718096;">📍 Quartos: ${[...g.quartos].sort().join(', ')}</div>
+                        <div style="margin-top:4px;">${leitosHtml}</div>
                     </div>`;
                 }
                 const cargas = Object.values(grupos).map(g=>g.cargaTotal).filter(c=>c>0);
                 if (cargas.length>=2) {
-                    const maxC = Math.max(...cargas), minC = Math.min(...cargas), diff = maxC-minC;
+                    const maxC=Math.max(...cargas), minC=Math.min(...cargas);
+                    const diff = maxC-minC;
                     const pctDiff = maxC>0 ? ((diff/maxC)*100).toFixed(1) : 0;
                     html += `<div style="margin-top:8px;padding:8px;background:#f7fafc;border-radius:6px;font-size:0.78rem;text-align:center;">
-                        📐 <strong>Equilíbrio:</strong> Diferença máx-mín = <span style="color:${diff<=2?'#48bb78':diff<=4?'#ed8936':'#e53e3e'};font-weight:700;">${diff.toFixed(1)}</span> pontos (${pctDiff}%) ${diff<=2?'✅ Muito bom':diff<=4?'⚠️ Aceitável':'🔴 Revisar'}</div>`;
+                        📐 Equilíbrio: Δ carga = ${diff.toFixed(1)} (${pctDiff}%) ${diff<=2?'✅':diff<=4?'⚠️':'🔴'}</div>`;
                 }
                 container.innerHTML = html;
             }
 
             function renderHistorico() {
                 const container = document.getElementById('historico-content');
-                if (state.historico.length===0) {
-                    container.innerHTML = '<div class="empty-state">Nenhum plantão registrado ainda.</div>';
-                    return;
-                }
+                if (!state.historico.length) { container.innerHTML='<div class="empty-state">Nenhum plantão registrado.</div>'; return; }
                 let html = '';
-                const recentes = [...state.historico].reverse().slice(0,10);
-                recentes.forEach((plantao, idx) => {
-                    const data = new Date(plantao.timestamp);
-                    const dataStr = data.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
-                    html += `<div class="historico-item" onclick="carregarPlantaoHistorico(${state.historico.length-1-idx})"><span class="data">📅 ${dataStr}</span> — ${Object.keys(plantao.distribuicao).length} pacientes</div>`;
+                [...state.historico].reverse().slice(0,10).forEach((p, i) => {
+                    const data = new Date(p.timestamp);
+                    const str = data.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+                    html += `<div class="historico-item" onclick="carregarPlantaoHistorico(${state.historico.length-1-i})"><span class="data">📅 ${str}</span> — ${Object.keys(p.distribuicao).length} pac.</div>`;
                 });
                 container.innerHTML = html;
             }
 
-            function renderAll() {
-                renderUnidade();
-                renderTecnicos();
-                renderResultado();
-                renderHistorico();
-                document.getElementById('num-tecnicos').value = state.numTecnicos;
-            }
+            function renderAll() { renderUnidade(); renderTecnicos(); renderResultado(); renderHistorico(); document.getElementById('num-tecnicos').value = state.numTecnicos; }
 
-            window.atualizarNomeTecnico = function(index, newName) {
-                if (index>=0 && index<state.nomesTecnicos.length) {
-                    state.nomesTecnicos[index] = newName.trim() || gerarNomePadrao(index);
-                    salvarState();
-                    renderResultado();
-                    document.querySelectorAll('.leito').forEach(el => {
-                        const leitoId = el.dataset.leitoId;
-                        if (leitoId && state.distribuicaoAtual[leitoId]===index) {
-                            const nome = state.nomesTecnicos[index];
-                            const badge = el.querySelector('.tec-badge');
-                            if (badge) badge.title = nome;
-                            const classif = state.classificacoes[leitoId]||'vago';
-                            el.title = `${TODOS_LEITOS.find(l=>l.id===leitoId)?.nome||leitoId} — ${classifToLabel(classif)} | ${nome}`;
-                        }
-                    });
-                }
+            window.atualizarNomeTecnico = function(idx, val) {
+                state.nomesTecnicos[idx] = val.trim() || gerarNomePadrao(idx);
+                salvarState(); renderResultado();
+                document.querySelectorAll('.leito').forEach(el => {
+                    const id = el.dataset.leitoId;
+                    if (state.distribuicaoAtual[id]===idx) {
+                        const badge = el.querySelector('.tec-badge');
+                        if (badge) badge.title = state.nomesTecnicos[idx];
+                        el.title = `${TODOS_LEITOS.find(l=>l.id===id)?.nome||id} — ${classifToLabel(state.classificacoes[id]||'vago')} | ${state.nomesTecnicos[idx]}`;
+                    }
+                });
             };
 
-            window.selecionarLeito = function(leitoId) {
-                const prev = document.querySelector('.leito.selected');
-                if (prev) prev.classList.remove('selected');
-                state.leitoSelecionado = (state.leitoSelecionado === leitoId) ? null : leitoId;
-                if (state.leitoSelecionado) {
-                    const el = document.querySelector(`[data-leito-id="${leitoId}"]`);
-                    if (el) el.classList.add('selected');
-                    mostrarMenuClassificacao(leitoId);
-                }
+            window.selecionarLeito = function(id) {
+                document.querySelector('.leito.selected')?.classList.remove('selected');
+                if (state.leitoSelecionado===id) { state.leitoSelecionado=null; return; }
+                state.leitoSelecionado = id;
+                document.querySelector(`[data-leito-id="${id}"]`)?.classList.add('selected');
+                mostrarMenuClassificacao(id);
             };
 
             function mostrarMenuClassificacao(leitoId) {
                 const leito = TODOS_LEITOS.find(l=>l.id===leitoId);
                 const atual = state.classificacoes[leitoId]||'vago';
                 const opcoes = [
-                    {val:'vago',label:'🚫 Vago (0)',cor:'#e8eaed'},
-                    {val:'minimo',label:'🟢 Mínimo (1)',cor:'#c6f6d5'},
-                    {val:'intermediario',label:'🔵 Intermediário (2)',cor:'#bee3f8'},
-                    {val:'alta-dep',label:'🟡 Alta Dependência (3)',cor:'#fefcbf'},
-                    {val:'semi-int',label:'🔴 Semi-Intensivo (4)',cor:'#fed7d7'},
-                    {val:'intensivo',label:'🟣 Intensivo (5)',cor:'#e9d8fd'}
+                    {val:'vago',label:'🚫 Vago (0)',cor:'#e8eaed'},{val:'minimo',label:'🟢 Mínimo (1)',cor:'#c6f6d5'},
+                    {val:'intermediario',label:'🔵 Intermediário (2)',cor:'#bee3f8'},{val:'alta-dep',label:'🟡 Alta Dep. (3)',cor:'#fefcbf'},
+                    {val:'semi-int',label:'🔴 Semi-Int. (4)',cor:'#fed7d7'},{val:'intensivo',label:'🟣 Intensivo (5)',cor:'#e9d8fd'}
                 ];
-                let menuHTML = `<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;padding:20px;box-shadow:0 16px 48px rgba(0,0,0,0.25);z-index:200;min-width:280px;"><strong style="display:block;margin-bottom:12px;">Classificar: ${leito.nome}</strong>`;
-                opcoes.forEach(op => {
-                    const isAtual = atual===op.val;
-                    menuHTML += `<div style="padding:10px 12px;margin:4px 0;border-radius:6px;cursor:pointer;background:${op.cor};font-weight:${isAtual?'700':'500'};border:${isAtual?'3px solid #1a365d':'2px solid transparent'};" onclick="definirClassificacao('${leitoId}','${op.val}');fecharMenu();">${op.label} ${isAtual?'✅':''}</div>`;
-                });
-                menuHTML += `<button style="margin-top:10px;width:100%;padding:8px;border-radius:6px;border:1px solid #cbd5e0;background:#f7fafc;cursor:pointer;font-weight:600;" onclick="fecharMenu()">Fechar</button></div>`;
+                let menu = `<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;padding:20px;box-shadow:0 16px 48px rgba(0,0,0,0.25);z-index:200;min-width:280px;">
+                    <strong>Classificar: ${leito.nome}</strong>`;
+                opcoes.forEach(o => menu += `<div style="padding:10px;margin:4px 0;border-radius:6px;cursor:pointer;background:${o.cor};font-weight:${atual===o.val?'700':'500'};border:${atual===o.val?'3px solid #1a365d':'2px solid transparent'}" onclick="definirClassificacao('${leitoId}','${o.val}');fecharMenu();">${o.label} ${atual===o.val?'✅':''}</div>`);
+                menu += `<button style="margin-top:10px;width:100%;padding:8px;border-radius:6px;border:1px solid #cbd5e0;background:#f7fafc;cursor:pointer;" onclick="fecharMenu()">Fechar</button></div>`;
                 fecharMenu();
-                const overlay = document.createElement('div'); overlay.id='menu-overlay';
-                overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:199;';
-                overlay.onclick = fecharMenu;
+                const overlay = document.createElement('div'); overlay.id='menu-overlay'; overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:199;'; overlay.onclick=fecharMenu;
                 document.body.appendChild(overlay);
-                const menuDiv = document.createElement('div'); menuDiv.id='menu-flutuante';
-                menuDiv.innerHTML = menuHTML;
-                document.body.appendChild(menuDiv);
+                const div = document.createElement('div'); div.id='menu-flutuante'; div.innerHTML=menu; document.body.appendChild(div);
             }
 
             window.definirClassificacao = function(leitoId, classif) {
@@ -612,7 +453,7 @@
                 state.distribuicaoAtual = {};
                 state.leitoSelecionado = null;
                 salvarState(); renderAll();
-                showToast(`Leito classificado como "${classifToLabel(classif)}"`, 'success');
+                showToast(`Classificado como "${classifToLabel(classif)}"`,'success');
             };
             window.fecharMenu = function() {
                 document.getElementById('menu-overlay')?.remove();
@@ -624,88 +465,150 @@
                 state.numTecnicos = parseInt(document.getElementById('num-tecnicos').value);
                 state.distribuicaoAtual = {};
                 sincronizarNomes(); salvarState(); renderAll();
-                showToast(`Equipe ajustada para ${state.numTecnicos} profissionais.`, '');
+                showToast(`Equipe ajustada para ${state.numTecnicos}.`,'');
             };
 
-            // Distribuição
+            // ---------- SISTEMA DE TROCA (MOVIMENTAÇÃO MANUAL) ----------
+            window.moverPaciente = function(leitoId) {
+                const classif = state.classificacoes[leitoId]||'vago';
+                if (classif==='vago') return;
+                const atualTec = state.distribuicaoAtual[leitoId];
+                const nomeAtual = atualTec!==undefined ? (state.nomesTecnicos[atualTec]||gerarNomePadrao(atualTec)) : 'não atribuído';
+                const opcoes = [];
+                for (let i=0; i<state.numTecnicos; i++) {
+                    if (i!==atualTec) opcoes.push(i);
+                }
+                if (opcoes.length===0) return;
+                let menu = `<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;padding:20px;box-shadow:0 16px 48px rgba(0,0,0,0.25);z-index:200;min-width:260px;">
+                    <strong>Mover ${TODOS_LEITOS.find(l=>l.id===leitoId)?.nome||leitoId}</strong>
+                    <p style="font-size:0.8rem;">Atual: ${nomeAtual}</p>`;
+                opcoes.forEach(i => {
+                    const nome = state.nomesTecnicos[i]||gerarNomePadrao(i);
+                    menu += `<div style="padding:10px;margin:4px 0;border-radius:6px;cursor:pointer;background:${CORES_TECNICOS[i]}20;border:2px solid ${CORES_TECNICOS[i]};" onclick="realizarTroca('${leitoId}',${i});fecharMenuTroca();">${nome}</div>`;
+                });
+                menu += `<button style="margin-top:10px;width:100%;padding:8px;border-radius:6px;background:#f7fafc;cursor:pointer;" onclick="fecharMenuTroca()">Cancelar</button></div>`;
+                fecharMenuTroca();
+                const overlay = document.createElement('div'); overlay.id='troca-overlay'; overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:199;'; overlay.onclick=fecharMenuTroca;
+                document.body.appendChild(overlay);
+                const div = document.createElement('div'); div.id='troca-menu'; div.innerHTML=menu; document.body.appendChild(div);
+            };
+            window.realizarTroca = function(leitoId, novoTec) {
+                if (state.classificacoes[leitoId]==='vago') return;
+                state.distribuicaoAtual[leitoId] = novoTec;
+                salvarState(); renderAll();
+                showToast('Paciente reatribuído com sucesso.','success');
+            };
+            window.fecharMenuTroca = function() {
+                document.getElementById('troca-overlay')?.remove();
+                document.getElementById('troca-menu')?.remove();
+            };
+
+            // ---------- DISTRIBUIÇÃO COM BALANCEAMENTO DE ALTA COMPLEXIDADE ----------
             function obterPenalidadeHistorico(tecIdx) {
-                let penalidade = 0;
-                state.historico.slice(-5).forEach(plantao => {
-                    if (plantao.distribuicao) {
-                        Object.keys(plantao.distribuicao).forEach(leitoId => {
-                            if (plantao.distribuicao[leitoId]===tecIdx) {
-                                const peso = PESOS_FUGULIN[plantao.classificacoes?.[leitoId]||'vago']||0;
-                                if (peso>=3) penalidade += (peso-2)*0.4;
-                            }
-                        });
+                let penalidade=0;
+                state.historico.slice(-5).forEach(p => {
+                    if (!p.distribuicao) return;
+                    for (const [leitoId, t] of Object.entries(p.distribuicao)) {
+                        if (t===tecIdx) {
+                            const peso = PESOS_FUGULIN[p.classificacoes?.[leitoId]||'vago']||0;
+                            if (peso>=3) penalidade += (peso-2)*0.4;
+                        }
                     }
                 });
                 return penalidade;
             }
             window.executarDistribuicao = function() {
                 state.distribuicaoAtual = {};
-                const leitosOcupados = TODOS_LEITOS.filter(l => (state.classificacoes[l.id]||'vago')!=='vago');
-                if (leitosOcupados.length===0) { showToast('Classifique os pacientes primeiro.','warning'); renderAll(); return; }
+                const ocupados = TODOS_LEITOS.filter(l=>(state.classificacoes[l.id]||'vago')!=='vago');
+                if (!ocupados.length) { showToast('Classifique os pacientes primeiro.','warning'); renderAll(); return; }
                 const quartoMap = {};
-                leitosOcupados.forEach(l => {
+                ocupados.forEach(l => {
                     const c = state.classificacoes[l.id]; const peso = PESOS_FUGULIN[c];
-                    const q = l.quarto; if (!quartoMap[q]) quartoMap[q] = [];
-                    quartoMap[q].push({leito:l, peso});
+                    const q = l.quarto; if(!quartoMap[q]) quartoMap[q]=[];
+                    quartoMap[q].push({leito:l, peso, classif:c});
                 });
-                const quartoEntries = Object.keys(quartoMap).map(q => ({
-                    quarto:q, leitos:quartoMap[q], pesoTotal:quartoMap[q].reduce((s,it)=>s+it.peso,0)
+                const quartoEntries = Object.entries(quartoMap).map(([q, itens]) => ({
+                    quarto:q, leitos:itens, pesoTotal:itens.reduce((s,i)=>s+i.peso,0), altaCount:itens.filter(i=>i.peso>=3).length
                 })).sort((a,b)=>b.pesoTotal-a.pesoTotal);
-                const cargasTec = new Array(state.numTecnicos).fill(0);
+
+                const cargas = new Array(state.numTecnicos).fill(0);
+                const altas = new Array(state.numTecnicos).fill(0);
                 const penalBase = Array.from({length:state.numTecnicos}, (_,i)=>obterPenalidadeHistorico(i));
+
+                // Greedy inicial com prioridade para alta complexidade
                 quartoEntries.forEach(qEntry => {
-                    let best=0, bestCarga=Infinity;
+                    let best=0, bestScore=Infinity;
                     for (let i=0;i<state.numTecnicos;i++) {
-                        const efetiva = cargasTec[i]+penalBase[i];
-                        if (efetiva<bestCarga) { bestCarga=efetiva; best=i; }
+                        const score = cargas[i] + penalBase[i] + altas[i]*2;
+                        if (score < bestScore) { bestScore=score; best=i; }
                     }
                     qEntry.leitos.forEach(item => {
-                        state.distribuicaoAtual[item.leito.id]=best;
-                        cargasTec[best]+=item.peso;
+                        state.distribuicaoAtual[item.leito.id] = best;
+                        cargas[best] += item.peso;
+                        if (item.peso>=3) altas[best]++;
                     });
                 });
-                for (let iter=0; iter<3; iter++) {
-                    let troca = false;
-                    for (let i=1;i<=9;i++) {
-                        const qA = `T${i.toString().padStart(2,'0')}`, qP = `T${(i+1).toString().padStart(2,'0')}`;
-                        const lA = leitosOcupados.filter(l=>l.quarto===qA), lP = leitosOcupados.filter(l=>l.quarto===qP);
-                        if (!lA.length||!lP.length) continue;
-                        const tA = state.distribuicaoAtual[lA[0].id], tP = state.distribuicaoAtual[lP[0].id];
-                        if (tA===tP) continue;
-                        const pA = quartoMap[qA]?.reduce((s,it)=>s+it.peso,0)||0, pP = quartoMap[qP]?.reduce((s,it)=>s+it.peso,0)||0;
-                        const cA=cargasTec[tA], cP=cargasTec[tP];
-                        const diffAntes=Math.abs(cA-cP);
-                        if (Math.abs((cA+pP)-(cP-pP)) < diffAntes && cP-pP>=0) {
-                            lP.forEach(l=>{state.distribuicaoAtual[l.id]=tA;});
-                            cargasTec[tA]+=pP; cargasTec[tP]-=pP; troca=true;
-                        } else if (Math.abs((cA-pA)-(cP+pA)) < diffAntes && cA-pA>=0) {
-                            lA.forEach(l=>{state.distribuicaoAtual[l.id]=tP;});
-                            cargasTec[tA]-=pA; cargasTec[tP]+=pA; troca=true;
+
+                // Pós-otimização: trocar quartos entre técnicos para equilibrar alta complexidade
+                let melhorou = true;
+                for (let iter=0; iter<5 && melhorou; iter++) {
+                    melhorou = false;
+                    for (let i=0; i<state.numTecnicos; i++) {
+                        for (let j=i+1; j<state.numTecnicos; j++) {
+                            const diffAltas = Math.abs(altas[i] - altas[j]);
+                            if (diffAltas <= 1) continue;
+                            // Tenta trocar um quarto de um técnico com outro
+                            const quartosI = [...new Set(ocupados.filter(l=>state.distribuicaoAtual[l.id]===i).map(l=>l.quarto))];
+                            const quartosJ = [...new Set(ocupados.filter(l=>state.distribuicaoAtual[l.id]===j).map(l=>l.quarto))];
+                            let melhorTroca = null;
+                            for (const qI of quartosI) {
+                                for (const qJ of quartosJ) {
+                                    const pesoI = quartoMap[qI].reduce((s,it)=>s+it.peso,0);
+                                    const pesoJ = quartoMap[qJ].reduce((s,it)=>s+it.peso,0);
+                                    const altaI = quartoMap[qI].filter(it=>it.peso>=3).length;
+                                    const altaJ = quartoMap[qJ].filter(it=>it.peso>=3).length;
+                                    const novaCarga_i = cargas[i] - pesoI + pesoJ;
+                                    const novaCarga_j = cargas[j] - pesoJ + pesoI;
+                                    const novaAlta_i = altas[i] - altaI + altaJ;
+                                    const novaAlta_j = altas[j] - altaJ + altaI;
+                                    const antigaDif = Math.abs(cargas[i]-cargas[j]) + Math.abs(altas[i]-altas[j])*3;
+                                    const novaDif = Math.abs(novaCarga_i-novaCarga_j) + Math.abs(novaAlta_i-novaAlta_j)*3;
+                                    if (novaDif < antigaDif - 0.5) {
+                                        melhorTroca = { i, j, qI, qJ, novaCarga_i, novaCarga_j, novaAlta_i, novaAlta_j };
+                                        break;
+                                    }
+                                }
+                                if (melhorTroca) break;
+                            }
+                            if (melhorTroca) {
+                                const { qI, qJ, i, j, novaCarga_i, novaCarga_j, novaAlta_i, novaAlta_j } = melhorTroca;
+                                // Realiza a troca
+                                quartoMap[qI].forEach(it => state.distribuicaoAtual[it.leito.id] = j);
+                                quartoMap[qJ].forEach(it => state.distribuicaoAtual[it.leito.id] = i);
+                                cargas[i] = novaCarga_i; cargas[j] = novaCarga_j;
+                                altas[i] = novaAlta_i; altas[j] = novaAlta_j;
+                                melhorou = true;
+                            }
                         }
                     }
-                    if (!troca) break;
                 }
+
                 salvarState(); renderAll();
-                showToast(`Distribuição concluída!`, 'success');
+                showToast('Distribuição balanceada concluída!','success');
             };
 
             window.confirmarPlantao = function() {
-                if (Object.keys(state.distribuicaoAtual).length===0) { showToast('Execute a distribuição primeiro.','warning'); return; }
+                if (!Object.keys(state.distribuicaoAtual).length) { showToast('Execute a distribuição primeiro.','warning'); return; }
                 state.historico.push({
                     timestamp:Date.now(), numTecnicos:state.numTecnicos, nomesTecnicos:[...state.nomesTecnicos],
                     classificacoes:{...state.classificacoes}, distribuicao:{...state.distribuicaoAtual}
                 });
-                if (state.historico.length>20) state.historico=state.historico.slice(-20);
-                salvarState(); renderHistorico();
-                showToast('✅ Plantão confirmado!', 'success');
+                if (state.historico.length>20) state.historico = state.historico.slice(-20);
+                salvarState(); renderHistorico(); showToast('✅ Plantão confirmado!','success');
             };
-            window.carregarPlantaoHistorico = function(index) {
-                if (index<0||index>=state.historico.length) return;
-                const p = state.historico[index];
+            window.carregarPlantaoHistorico = function(idx) {
+                if (idx<0||idx>=state.historico.length) return;
+                const p = state.historico[idx];
                 state.classificacoes = {...p.classificacoes};
                 state.distribuicaoAtual = {...p.distribuicao};
                 state.numTecnicos = p.numTecnicos;
@@ -714,7 +617,7 @@
                 TODOS_LEITOS.forEach(l=>{ if(!(l.id in state.classificacoes)) state.classificacoes[l.id]='vago'; });
                 salvarState(); renderAll();
                 document.getElementById('num-tecnicos').value = state.numTecnicos;
-                showToast(`📜 Plantão carregado.`, '');
+                showToast('📜 Plantão carregado.','');
             };
             window.resetarClassificacoes = function() {
                 if (confirm('Resetar todas as classificações?')) {
@@ -727,56 +630,47 @@
                 if (confirm('Limpar histórico?')) { state.historico=[]; salvarState(); renderHistorico(); showToast('Histórico limpo.','warning'); }
             };
 
-            // Geração de relatório para impressão
+            // Relatório em paisagem
             window.gerarRelatorio = function() {
                 const now = new Date();
-                document.getElementById('report-datetime').textContent = 
-                    `Gerado em: ${now.toLocaleDateString('pt-BR')} às ${now.toLocaleTimeString('pt-BR')}`;
-                document.getElementById('report-config').textContent = 
-                    `Número de técnicos: ${state.numTecnicos} | Profissionais: ${state.nomesTecnicos.slice(0,state.numTecnicos).join(', ') || 'Não informados'}`;
-                
+                document.getElementById('report-datetime').textContent = `Gerado em: ${now.toLocaleDateString('pt-BR')} às ${now.toLocaleTimeString('pt-BR')}`;
+                document.getElementById('report-config').textContent = `Nº de técnicos: ${state.numTecnicos} | Profissionais: ${state.nomesTecnicos.slice(0,state.numTecnicos).join(', ')}`;
                 const distDiv = document.getElementById('report-distribuicao');
-                const tbody = document.querySelector('#report-leitos tbody');
-                tbody.innerHTML = '';
-
-                // Tabela de distribuição por técnico
                 let distHTML = '';
                 const grupos = {};
-                for (let i=0;i<state.numTecnicos;i++) grupos[i] = {leitos:[], carga:0};
-                Object.keys(state.distribuicaoAtual).forEach(leitoId => {
-                    const tecIdx = state.distribuicaoAtual[leitoId];
-                    const classif = state.classificacoes[leitoId]||'vago';
-                    if (classif==='vago') return;
+                for (let i=0;i<state.numTecnicos;i++) grupos[i] = {leitos:[], carga:0, alta:0};
+                for (const [id, tec] of Object.entries(state.distribuicaoAtual)) {
+                    const classif = state.classificacoes[id]||'vago';
+                    if (classif==='vago') continue;
                     const peso = PESOS_FUGULIN[classif];
-                    const leito = TODOS_LEITOS.find(l=>l.id===leitoId);
-                    grupos[tecIdx].leitos.push({nome:leito?.nome||leitoId, peso, classif});
-                    grupos[tecIdx].carga += peso;
-                });
+                    const leito = TODOS_LEITOS.find(l=>l.id===id);
+                    grupos[tec].leitos.push(leito?.nome||id);
+                    grupos[tec].carga += peso;
+                    if (peso>=3) grupos[tec].alta++;
+                }
                 for (let i=0;i<state.numTecnicos;i++) {
-                    const nome = state.nomesTecnicos[i] || gerarNomePadrao(i);
-                    distHTML += `<p><strong>${nome}</strong> — Carga: ${grupos[i].carga.toFixed(1)} | Leitos: ${grupos[i].leitos.map(l=>l.nome).join(', ') || 'nenhum'}</p>`;
+                    const nome = state.nomesTecnicos[i]||gerarNomePadrao(i);
+                    distHTML += `<p><strong>${nome}</strong> — Carga: ${grupos[i].carga.toFixed(1)} | Alta: ${grupos[i].alta} | Leitos: ${grupos[i].leitos.join(', ') || 'nenhum'}</p>`;
                 }
                 distDiv.innerHTML = distHTML;
-
-                // Tabela de leitos
+                const tbody = document.querySelector('#report-leitos tbody');
+                tbody.innerHTML = '';
                 TODOS_LEITOS.forEach(leito => {
                     const classif = state.classificacoes[leito.id]||'vago';
                     const peso = PESOS_FUGULIN[classif];
-                    const tecIdx = state.distribuicaoAtual[leito.id];
-                    const nomeTec = (tecIdx!==undefined && classif!=='vago') ? (state.nomesTecnicos[tecIdx]||gerarNomePadrao(tecIdx)) : '—';
+                    const tec = state.distribuicaoAtual[leito.id];
+                    const nomeTec = (tec!==undefined && classif!=='vago') ? (state.nomesTecnicos[tec]||gerarNomePadrao(tec)) : '—';
                     const tr = document.createElement('tr');
                     tr.innerHTML = `<td>${leito.nome}</td><td>${classifToLabel(classif)}</td><td>${peso}</td><td>${nomeTec}</td>`;
                     tbody.appendChild(tr);
                 });
-
                 window.print();
             };
 
-            // Inicialização
             carregarState();
             document.getElementById('num-tecnicos').value = state.numTecnicos;
             renderAll();
-            document.addEventListener('keydown', e => { if(e.key==='Escape') fecharMenu(); });
+            document.addEventListener('keydown', e => { if (e.key==='Escape') { fecharMenu(); fecharMenuTroca(); } });
         })();
     </script>
 </body>
